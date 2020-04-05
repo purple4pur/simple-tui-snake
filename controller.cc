@@ -42,7 +42,7 @@ START:
           snake.ChangeDirection(Direction::kRight);
           break;
         case SPACE:
-          switch (int ret = this->Pause()) {
+          switch (this->Pause()) {
             case 2:
               goto GAMEOVER;
             case 1:
@@ -72,7 +72,7 @@ START:
     Sleep(this->speed_);
   }
 GAMEOVER:
-  switch (int ret = this->GameOver()) {
+  switch (this->GameOver()) {
     case 1:
       snake.Reset();
       food.Generate(snake);
@@ -129,12 +129,14 @@ int Controller::Welcome(void) {
       case ARROW_DOWN:
         if (select < 6) {
           ++select;
+          Ui::WelcomeUi(select);
         }
         break;
       case ARROW_LEFT:
       case ARROW_UP:
         if (select > 1) {
           --select;
+          Ui::WelcomeUi(select);
         }
         break;
       case RETURN:
@@ -146,7 +148,6 @@ int Controller::Welcome(void) {
       default:
         break;
     }
-    Ui::WelcomeUi(select);
   }
   return 0;
 }
@@ -163,12 +164,14 @@ int Controller::Pause(void) {
       case ARROW_DOWN:
         if (select < 2) {
           ++select;
+          Ui::PauseUi(select);
         }
         break;
       case ARROW_LEFT:
       case ARROW_UP:
         if (select > 1) {
           --select;
+          Ui::PauseUi(select);
         }
         break;
       case RETURN:
@@ -177,7 +180,6 @@ int Controller::Pause(void) {
       default:
         break;
     }
-    Ui::PauseUi(select);
   }
   return 0;
 }
@@ -194,12 +196,14 @@ int Controller::GameOver(void) {
       case ARROW_DOWN:
         if (select < 2) {
           ++select;
+          Ui::GameOverUi(select);
         }
         break;
       case ARROW_LEFT:
       case ARROW_UP:
         if (select > 1) {
           --select;
+          Ui::GameOverUi(select);
         }
         break;
       case RETURN:
@@ -208,7 +212,6 @@ int Controller::GameOver(void) {
       default:
         break;
     }
-    Ui::GameOverUi(select);
   }
   return 0;
 }

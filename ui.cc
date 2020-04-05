@@ -37,7 +37,6 @@ void Ui::WelcomeUi(void) {
   std::cout << "│           罢了          │";
   Console::SetCsrPos(8, line++);
   std::cout << "└─────────────────────────┘";
-  Console::SetCsrPos(0, 29);
 }
 
 // 欢迎界面绘制选项
@@ -98,7 +97,6 @@ void Ui::GameOverUi(const std::string difficulty, const int score) {
   std::cout << difficulty;
   Console::SetCsrPos(15, 13);
   std::cout << score;
-  Console::SetCsrPos(0, 29);
 }
 
 // 游戏结束界面绘制选项
