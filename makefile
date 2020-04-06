@@ -1,9 +1,9 @@
 imp = ../library_cpp/include/console.cc ../library_cpp/include/point.cc *.cc
 
-all: compile
+all: debug
 
-compile:
-	@g++ -Wall main.cpp ${imp} -o Snake -O3 -static
+debug:
+	@g++ -Wall main.cpp ${imp} -o Snake-debug
 
-run:
-	@./Snake
+release:
+	@g++ main.cpp ${imp} -o Snake-release -O3 -static

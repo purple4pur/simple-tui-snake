@@ -3,7 +3,7 @@
 #include "../library_cpp/include/console.h"
 #include "../library_cpp/include/point.h"
 
-// 初始化并打印蛇身
+// 初始化蛇身
 Snake::Snake(void) {
   this->body_.assign({Point(3, 1), Point(2, 1), Point(1, 1)});
 }
