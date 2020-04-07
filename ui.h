@@ -6,12 +6,12 @@
 
 namespace Ui {
 
-void WelcomeUi(void);              // 娆㈣繋鐣岄潰
-void WelcomeUi(const int select);  // 娆㈣繋鐣岄潰缁樺埗閫夐」
-void PauseUi(void);                // 鏆傚仠鐣岄潰
-void PauseUi(const int select);    // 鏆傚仠鐣岄潰缁樺埗閫夐」
-void GameOverUi(const std::string difficulty, const int score);  // 娓告垙缁撴潫鐣岄潰
-void GameOverUi(const int select);  // 娓告垙缁撴潫鐣岄潰缁樺埗閫夐」
+void WelcomeUi(void);              // 欢迎界面
+void WelcomeUi(const int select);  // 欢迎界面绘制选项
+void PauseUi(void);                // 暂停界面
+void PauseUi(const int select);    // 暂停界面绘制选项
+void GameOverUi(const std::string difficulty, const int score);  // 游戏结束界面
+void GameOverUi(const int select);  // 游戏结束界面绘制选项
 
 }  // namespace Ui
 

@@ -10,7 +10,7 @@ void Ui::WelcomeUi(void) {
   Console::SetCsrPos(8, line++);
   std::cout << "┌─────────────────────────┐";
   Console::SetCsrPos(8, line++);
-  std::cout << "│       菜鸡の贪食蛇      │";
+  std::cout << "│       菜鸡の贪吃蛇      │";
   Console::SetCsrPos(8, line++);
   std::cout << "│          By Purple4pur  │";
   Console::SetCsrPos(8, line++);
@@ -52,15 +52,16 @@ void Ui::WelcomeUi(const int select) {
 
 // 暂停界面
 void Ui::PauseUi(void) {
-  Console::SetCsrPos(9, 9);
+  int line = 9;
+  Console::SetCsrPos(9, line++);
   std::cout << "┌─────────────────────┐";
-  Console::SetCsrPos(9, 10);
+  Console::SetCsrPos(9, line++);
   std::cout << "│      游戏已暂停     │";
-  Console::SetCsrPos(9, 11);
+  Console::SetCsrPos(9, line++);
   std::cout << "│                     │";
-  Console::SetCsrPos(9, 12);
-  std::cout << "│    继续      放弃   │";
-  Console::SetCsrPos(9, 13);
+  Console::SetCsrPos(9, line++);
+  std::cout << "│    继续      放弃   │";  // line 12
+  Console::SetCsrPos(9, line++);
   std::cout << "└─────────────────────┘";
 }
 
@@ -77,21 +78,22 @@ void Ui::PauseUi(const int select) {
 
 // 游戏结束界面
 void Ui::GameOverUi(const std::string difficulty, const int score) {
-  Console::SetCsrPos(9, 9);
+  int line = 9;
+  Console::SetCsrPos(9, line++);
   std::cout << "┌─────────────────────┐";
-  Console::SetCsrPos(9, 10);
+  Console::SetCsrPos(9, line++);
   std::cout << "│       菜鸡认证      │";
-  Console::SetCsrPos(9, 11);
+  Console::SetCsrPos(9, line++);
   std::cout << "│                     │";
-  Console::SetCsrPos(9, 12);
-  std::cout << "│    难度:            │";
-  Console::SetCsrPos(9, 13);
-  std::cout << "│    得分:            │";
-  Console::SetCsrPos(9, 14);
+  Console::SetCsrPos(9, line++);
+  std::cout << "│    难度:            │";  // line 12
+  Console::SetCsrPos(9, line++);
+  std::cout << "│    得分:            │";  // line 13
+  Console::SetCsrPos(9, line++);
   std::cout << "│                     │";
-  Console::SetCsrPos(9, 15);
-  std::cout << "│    不服      认了   │";
-  Console::SetCsrPos(9, 16);
+  Console::SetCsrPos(9, line++);
+  std::cout << "│    不服      认了   │";  // line 15
+  Console::SetCsrPos(9, line++);
   std::cout << "└─────────────────────┘";
   Console::SetCsrPos(15, 12);
   std::cout << difficulty;

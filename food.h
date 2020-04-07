@@ -9,9 +9,9 @@ class Food {
  public:
   Point coord;
   Food(void);
-  void Generate(const Snake& snake);  // ç”Ÿæˆæ–°é£Ÿç‰©
-  bool IsEaten(const Snake& snake);   // åˆ¤æ–­æ˜¯å¦è¢«åƒ
-  void ForcedRedraw(void);            // å¼ºåˆ¶é‡ç»˜
+  void Generate(const Snake& snake);  // Éú³ÉĞÂÊ³Îï
+  bool IsEaten(const Snake& snake);   // ÅĞ¶ÏÊÇ·ñ±»³Ô
+  void ForcedRedraw(void);            // Ç¿ÖÆÖØ»æ
 };
 
 #endif  // FOOD_H

@@ -31,6 +31,8 @@ void Snake::ChangeDirection(const Direction direction) {
 // 判断是否撞击自身
 bool Snake::HasHitBody(void) {
   Point head = this->body_.front();
+
+  // 从第四节起遍历蛇身即可
   for (auto&& i = this->body_.begin() + 3; i != this->body_.end(); ++i) {
     if (head == *i) {
       head.Dot("╳ ");
@@ -57,10 +59,10 @@ void Snake::Append(void) {
       this->body_.emplace_front(this->body_.front() + Point(-1, 0));
       break;
     default:
-      return;
+      break;
   }
 
-  // 越界则从地图对面出现
+  // 越界则从地图对面出现，修正蛇头位置
   if (this->body_.front().GetX() < 0) {
     this->body_.front() += Point(30, 0);
   } else if (this->body_.front().GetX() > 29) {
@@ -84,10 +86,6 @@ void Snake::ForcedRedraw(void) {
 
 // 重置
 void Snake::Reset(void) {
-  this->body_.clear();
   this->body_.assign({Point(3, 1), Point(2, 1), Point(1, 1)});
-  for (auto&& i : this->body_) {
-    i.Dot("●");
-  }
   this->direction_ = Direction::kRight;
 }

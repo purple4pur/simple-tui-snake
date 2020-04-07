@@ -10,19 +10,19 @@ enum Direction { kUp = 0, kDown = 1, kLeft = 2, kRight = 3 };
 
 class Snake {
  public:
-  Snake(void);                                      // 鍒濆鍖栧苟鎵撳嵃铔囪韩
-  void Forward(void);                               // 姝ｅ父鍚戝墠绉诲姩
-  void ChangeDirection(const Direction direction);  // 鏀瑰彉鏂瑰悜
-  bool HasHitBody(void);                            // 鍒ゆ柇鏄惁鎾炲嚮鑷韩
-  void Append(void);                                // 鍔犻暱
-  void ForcedRedraw(void);                          // 寮哄埗閲嶇粯
-  void Reset(void);                                 // 閲嶇疆
+  Snake(void);                                      // 初始化蛇身
+  void Forward(void);                               // 正常向前移动
+  void ChangeDirection(const Direction direction);  // 改变方向
+  bool HasHitBody(void);                            // 判断是否撞击自身
+  void Append(void);                                // 加长
+  void ForcedRedraw(void);                          // 强制重绘
+  void Reset(void);                                 // 重置
 
  private:
-  std::deque<Point> body_;             // 铔囪韩
-  int direction_ = Direction::kRight;  // 鍓嶈繘鏂瑰悜
+  std::deque<Point> body_;             // 蛇身
+  int direction_ = Direction::kRight;  // 前进方向
 
-  friend class Food;  // Food 绫昏涓哄弸鍏冧互璁块棶 body_
+  friend class Food;  // Food 类设为友元以访问 body_
 };
 
 #endif  // SNAKE_H

@@ -6,18 +6,18 @@
 
 class Controller {
  public:
-  void Game(void);  // ä¸»æ§åˆ¶å‡½æ•°
+  void Game(void);  // Ö÷¿ØÖÆº¯Êı
 
  private:
-  int speed_;                           // é€Ÿåº¦ï¼Œè¶Šå°è¶Šå¿«
-  std::string difficulty_;              // éš¾åº¦
-  int score_;                           // å¾—åˆ†
-  void InitWindow(void);                // åˆå§‹åŒ–çª—å£æ ‡é¢˜å’Œå¤§å°
-  void SetSpeed(const int difficulty);  // è®¾ç½®é€Ÿåº¦
-  int Welcome(void);                    // æ¬¢è¿ç•Œé¢
-  int Pause(void);                      // æš‚åœæ¸¸æˆ
-  int GameOver(void);                   // æ¸¸æˆç»“æŸ
-  void UpdateStatus(void);              // æ›´æ–°æ ‡é¢˜
+  int speed_;                            // ËÙ¶È£¬Ô½Ğ¡Ô½¿ì
+  std::string difficulty_;               // ÄÑ¶È
+  int score_;                            // µÃ·Ö
+  void InitWindow(void);                 // ³õÊ¼»¯´°¿Ú±êÌâºÍ´óĞ¡
+  void InitProps(const int difficulty);  // ÉèÖÃÊôĞÔ
+  int Welcome(void);                     // »¶Ó­½çÃæ
+  int Pause(void);                       // ÔİÍ£ÓÎÏ·
+  int GameOver(void);                    // ÓÎÏ·½áÊø
+  void UpdateStatus(void);               // ¸üĞÂ±êÌâ
 };
 
 #endif  // CONTROLLER_H

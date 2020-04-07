@@ -16,17 +16,23 @@ void Controller::Game(void) {
   Food food;
 START:
   this->InitWindow();
-  Console::Clear();
+
+  // 欢迎界面返回难度并设置
   int difficulty = this->Welcome();
   if (!difficulty) {
     return;
   }
-  this->SetSpeed(difficulty);
+  this->InitProps(difficulty);
   this->UpdateStatus();
+
+  // 首次显示蛇身和食物
   Console::Clear();
   snake.ForcedRedraw();
   food.ForcedRedraw();
+
+  // 游戏主体视为一个死循环
   while (true) {
+    // 非阻塞的方式读取按键不会打断游戏
     if (char key = Console::CatchKey()) {
       switch (key) {
         case ARROW_UP:
@@ -41,22 +47,28 @@ START:
         case ARROW_RIGHT:
           snake.ChangeDirection(Direction::kRight);
           break;
+
+        // 游戏中空格键打开暂停选单
         case SPACE:
           switch (this->Pause()) {
             case 2:
               goto GAMEOVER;
             case 1:
             default:
+              // 从暂停恢复后需重新打印完整蛇身和食物
               Console::Clear();
               snake.ForcedRedraw();
               food.ForcedRedraw();
               break;
           }
           break;
+
         default:
           break;
       }
     }
+
+    // 吃到食物则增长蛇身并生成新食物
     if (food.IsEaten(snake)) {
       snake.Append();
       food.Generate(snake);
@@ -65,18 +77,28 @@ START:
     } else {
       snake.Forward();
     }
+
+    // 光标定位到窗口左下角，不影响游戏画面
     Console::SetCsrPos(0, 29);
+
+    // 撞到自身则跳出循环，结束游戏
     if (snake.HasHitBody()) {
       goto GAMEOVER;
     }
+
+    // 游戏难度反映在等待时间上
     Sleep(this->speed_);
   }
 GAMEOVER:
   switch (this->GameOver()) {
     case 1:
+
+      // 重新开始游戏则重置蛇身和方向，根据新蛇身生成食物
       snake.Reset();
       food.Generate(snake);
+      Console::Clear();
       goto START;
+
     case 2:
     default:
       break;
@@ -85,12 +107,12 @@ GAMEOVER:
 
 // 初始化窗口标题和大小
 void Controller::InitWindow(void) {
-  Console::SetTitle("菜鸡の贪食蛇");
+  Console::SetTitle("菜鸡の贪吃蛇");
   Console::SetWindowSize(30, 30);
 }
 
-// 设置速度
-void Controller::SetSpeed(const int difficulty) {
+// 设置属性
+void Controller::InitProps(const int difficulty) {
   switch (difficulty) {
     case 5:
       this->speed_ = 30;
@@ -114,15 +136,20 @@ void Controller::SetSpeed(const int difficulty) {
       this->difficulty_ = "简单";
       break;
   }
+
+  // 得分初始化为 0
   this->score_ = 0;
 }
 
 // 欢迎界面
 // @Return: 0: 退出游戏 1-6: 难度编号
 int Controller::Welcome(void) {
+  // 绘制界面，默认指向第一项
   Ui::WelcomeUi();
   Ui::WelcomeUi(1);
   int select = 1;
+
+  // 阻塞的方式读取按键，无需浪费资源重绘
   while (char key = Console::GetKey()) {
     switch (key) {
       case ARROW_RIGHT:
@@ -141,6 +168,7 @@ int Controller::Welcome(void) {
         break;
       case RETURN:
       case SPACE:
+        // 退出在第六项，但按照约定需返回 0
         if (select == 6) {
           select = 0;
         }
@@ -187,6 +215,7 @@ int Controller::Pause(void) {
 // 游戏结束
 // @Return: 1: 重新开始 2: 结束游戏
 int Controller::GameOver(void) {
+  // 显示此次游戏难度和得分
   Ui::GameOverUi(this->difficulty_, this->score_);
   Ui::GameOverUi(1);
   int select = 1;
@@ -219,7 +248,7 @@ int Controller::GameOver(void) {
 // 更新标题
 void Controller::UpdateStatus(void) {
   std::string title =
-      (std::string) "菜鸡の贪食蛇 / 难度: " + this->difficulty_ +
+      (std::string) "菜鸡の贪吃蛇 / 难度: " + this->difficulty_ +
       (std::string) " / 得分: " + std::to_string(this->score_);
   Console::SetTitle(title);
 }
