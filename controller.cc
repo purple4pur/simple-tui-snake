@@ -142,7 +142,7 @@ void Controller::InitProps(const int difficulty) {
 }
 
 // 欢迎界面
-// @Return: 0: 退出游戏 1-6: 难度编号
+// @Return: 0: 退出游戏 1-5: 难度编号
 int Controller::Welcome(void) {
   // 绘制界面，默认指向第一项
   Ui::WelcomeUi();
