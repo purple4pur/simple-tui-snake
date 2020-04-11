@@ -8,7 +8,7 @@
 class Food {
  public:
   Point coord;
-  Food(void);
+  Food(const Snake& snake);
   void Generate(const Snake& snake);  // 生成新食物
   bool IsEaten(const Snake& snake);   // 判断是否被吃
   void ForcedRedraw(void);            // 强制重绘

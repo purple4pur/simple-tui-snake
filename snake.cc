@@ -1,12 +1,12 @@
 #include "snake.h"
 
+#include <cstdlib>
+
 #include "../library_cpp/include/console.h"
 #include "../library_cpp/include/point.h"
 
 // 初始化蛇身
-Snake::Snake(void) {
-  this->body_.assign({Point(3, 1), Point(2, 1), Point(1, 1)});
-}
+Snake::Snake(void) { this->Reset(); }
 
 // 正常向前移动
 void Snake::Forward(void) {
@@ -86,6 +86,25 @@ void Snake::ForcedRedraw(void) {
 
 // 重置
 void Snake::Reset(void) {
-  this->body_.assign({Point(3, 1), Point(2, 1), Point(1, 1)});
-  this->direction_ = Direction::kRight;
+  Point head(rand() % 10 + 10, rand() % 10 + 10);
+  this->direction_ = rand() % 4;
+  int dx = 0, dy = 0;
+  switch (this->direction_) {
+    case Direction::kDown:
+      dy = -1;
+      break;
+    case Direction::kUp:
+      dy = 1;
+      break;
+    case Direction::kRight:
+      dx = -1;
+      break;
+    case Direction::kLeft:
+      dx = 1;
+      break;
+    default:
+      break;
+  }
+  this->body_.assign(
+      {head, head + Point(dx, dy), head + Point(2 * dx, 2 * dy)});
 }

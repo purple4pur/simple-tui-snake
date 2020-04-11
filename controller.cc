@@ -2,6 +2,8 @@
 
 #include <Windows.h>
 
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <string>
 
@@ -12,8 +14,9 @@
 
 // 主控制函数
 void Controller::Game(void) {
+  srand(time(NULL));
   Snake snake;
-  Food food;
+  Food food(snake);
 START:
   this->InitWindow();
 
@@ -87,8 +90,9 @@ START:
     }
 
     // 游戏难度反映在等待时间上
-    Sleep(this->speed_);
+    Console::Wait(this->speed_);
   }
+
 GAMEOVER:
   switch (this->GameOver()) {
     case 1:

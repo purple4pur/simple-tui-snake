@@ -1,20 +1,13 @@
 #include "food.h"
 
 #include <cstdlib>
-#include <ctime>
 
 #include "snake.h"
 
-Food::Food(void) {
-  srand(time(NULL));
-
-  // 初始时在蛇身下方区域随机生成
-  this->coord = Point(rand() % 30, rand() % 25 + 5);
-}
+Food::Food(const Snake& snake) { this->Generate(snake); }
 
 // 生成新食物
 void Food::Generate(const Snake& snake) {
-  srand(time(NULL));
   int X, Y;
 GENERATE:
   X = rand() % 30;
